@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     server_port: int = Field(default=8000, serialization_alias="SERVER_PORT")
     debug: bool = Field(default=True, serialization_alias="DEBUG")
     project_name: str = Field(default="app_api", serialization_alias="PROJECT_NAME")
-    KAFKA_TOPIC: str = Field(default="users", serialization_alias="topic")
+    KAFKA_TOPIC: str = Field(default="users.registered", serialization_alias="topic")
 
 
 settings = Settings()

@@ -5,9 +5,9 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     # --- DATABASE SETTINGS ---
     MONGODB_URL: str = Field(default="mongodb://localhost:27017", validation_alias="mongodb_url")
-    DATABASE_NAME: str = Field(default="test_db", validation_alias="database_name")
+    DATABASE_NAME: str = Field(default="kafka_db", validation_alias="database_name")
     COLLECTION: str = Field(default="users", validation_alias="collection_name")
-    KAFKA_TOPIC: str = Field(default="users", validation_alias="kafka_topic")
+    KAFKA_TOPIC: str = Field(default="users.registered", validation_alias="kafka_topic")
 
 
 settings = Settings()

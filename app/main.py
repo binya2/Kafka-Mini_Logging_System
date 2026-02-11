@@ -1,3 +1,5 @@
+from time import sleep
+import json
 import uvicorn
 from confluent_kafka import Producer
 from fastapi import FastAPI, responses
@@ -22,6 +24,22 @@ def register(data: UserModel):
             status_code=400,
             content={"status": "error", "message": str(e)}
         )
+
+
+@app.get("/seed/", status_code=200)
+def seed():
+    """Endpoint to seed test data from users_with_posts.json file."""
+    print("Seeding test data...")
+    with open("users_with_posts.json", "r") as f:
+        users = json.load(f)
+        for user in users:
+            try:
+                value = json.dumps(user).encode("utf-8")
+                send_user(producer, value)
+                sleep(5)
+            except Exception as e:
+                print(f"Error sending user {user['email']}: {e}")
+    return {"status": "success", "message": f"sending {len(users)} users to kafka evry 5 seconds"}
 
 
 if __name__ == "__main__":
