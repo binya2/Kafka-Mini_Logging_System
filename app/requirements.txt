@@ -1,0 +1,6 @@
+confluent_kafka
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+email_validator
