@@ -22,9 +22,8 @@ services:
       KAFKA_LOG_DIRS: /var/lib/kafka/data
       CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
 
-  mongo_db:
+  mongodb:
     image: mongo:latest
-    hostname: mongodb
     container_name: mongodb
     ports: [ "27017:27017" ]
 
@@ -43,6 +42,6 @@ services:
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:29092
       KAFKA_TOPIC: users_created
-      MONGO_URI: mongodb://mongo_db:27017
+      MONGODB_URL: mongodb://mongodb:27017
       MONGO_DB: appdb
       MONGO_COLLECTION: users
